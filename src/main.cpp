@@ -131,7 +131,7 @@ int main()
     unsigned int hdrMap = 0;
     unsigned int hdrCache = 0;
     int hdrResolution = 0;
-    bool r = HDRLoader::load("hdr/sunflowers_puresky_4k.hdr", hdrRes);
+    bool r = HDRLoader::load("hdr/solitude_night_4k.hdr", hdrRes);
     if (r)
     {
         hdrMap = GetTextureRGB32F(hdrRes.width, hdrRes.height);
@@ -152,30 +152,30 @@ int main()
     //scene
     std::vector<Triangle> triangles;
     Material m;
-    m.baseColor = vec3(0, 1, 1);
-    m.roughness = 0.0;
+    m.baseColor = vec3(1, 1, 0);
+    m.roughness = 0.1;
     m.subsurface = 0.0;
     m.specular = 1.0;
-    m.metallic = 0.0;
-    m.clearcoat = 0.5;
-    m.clearcoatGloss = 0.3;
-    ReadObj("obj/bunny.obj", triangles, m, GetTransformMatrix(vec3(0, 0, 0), vec3(0.3, -1.6, -0.1), vec3(1.5, 1.5, 1.5)), true);
-
-    m = Material();
-    m.baseColor = vec3(0.1, 0.1, 0.1);
-    m.roughness = 0.0;
-    m.subsurface = 0.0;
-    m.specular = 1.0;
-    m.metallic = 0.0;
+    m.metallic = 1.0;
     m.clearcoat = 1.0;
     m.clearcoatGloss = 0.3;
+    ReadObj("obj/teaspot.obj", triangles, m, GetTransformMatrix(vec3(0, 0, 0), vec3(0.3, 0, -0.1), vec3(1.5, 1.5, 1.5)), true);
+
+    m = Material();
+    m.baseColor = vec3(1, 1, 1);
+    m.roughness = 0.3;
+    m.subsurface = 0.0;
+    m.specular = 1.0;
+    m.metallic = 1.0;
+    m.clearcoat = 1.0;
+    m.clearcoatGloss = 0.1;
     ReadObj("obj/quad.obj", triangles, m, GetTransformMatrix(vec3(0, 0, 0), vec3(0, -1.4, 0), vec3(10, 0.01, 10)), false);
 
-    /*m.baseColor = vec3(1, 1, 0);
+    m.baseColor = vec3(1, 1, 0);
     ReadObj("obj/quad.obj", triangles, m, GetTransformMatrix(vec3(90, 90, 90), vec3(0.0, 0, -0.5), vec3(1, 1, 1)), false);
 
     m.baseColor = vec3(1, 0, 0);
-    ReadObj("obj/quad.obj", triangles, m, GetTransformMatrix(vec3(0, 91, 0), vec3(-0.9, 0, 0), vec3(1, 1, 0.1)), false);*/
+    ReadObj("obj/quad.obj", triangles, m, GetTransformMatrix(vec3(0, 91, 0), vec3(-0.9, 0, 0), vec3(1, 1, 0.1)), false);
 
     /*m = Material();
     m.baseColor = vec3(1, 1, 1);

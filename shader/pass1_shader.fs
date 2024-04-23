@@ -713,11 +713,11 @@ vec3 pathTracing(HitResult res, int maxBounce)
                 vec3 color = sampleHdr(L);
                 float pdf_light = HDR_PDF(L);
                 vec3 f_r = brdfEvaluate(V, N, L, res.material);
-                float pdf_brdf = BRDF_PDF(V, N, L, res.material);
+                float pdf_brdf = BRDF_PDF(N, V, L, res.material);
                 
                 // 多重重要性采样
                 float mis_weight = misMixWeight(pdf_light, pdf_brdf);
-                //final_Lo += mis_weight * Lo * color * f_r * dot(N, L) / pdf_light;
+                final_Lo += mis_weight * Lo * color * f_r * dot(N, L) / pdf_light;
                 //final_Lo += Lo * color * f_r * dot(N, L) / pdf_light;
             }
         }
